@@ -24,7 +24,7 @@ This project streams live prices from Binance and checks for triangular arbitrag
 
 - `main.py`: Entrypoint.
 - `arbitrage.py`: Triangular arbitrage logic.
-- `stream.py`: Websocket streaming. Can also be runned to show btcusdt trade feed as default.
+- `stream.py`: Websocket streaming. Can also be runned independently to show btcusdt trade feed as default.
 
 - `price_history.py`: 24h 5 min interval price fetcher.
 
