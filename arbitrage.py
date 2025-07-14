@@ -1,10 +1,14 @@
 def check_arbitrage_opportunities(price_data):
     """
     Checks for triangular arbitrage opportunities given price data.
+    Applies 0.01% commission per trade (1/10000).
     """
     btc_usdt = price_data["btcusdt"]
     eth_usdt = price_data["ethusdt"]
     eth_btc = price_data["ethbtc"]
+
+    commission = 1 / 10000  # 0.01% per trade
+    commission_factor = (1 - commission) ** 3  # 3 trades per cycle
 
     print("\narbitrage possibilities:")
     paths = [
@@ -17,7 +21,7 @@ def check_arbitrage_opportunities(price_data):
     ]
     for a, b, c, calc in paths:
         try:
-            profit = calc()
+            profit = calc() * commission_factor
             percent_profit = (profit - 1) * 100
             if percent_profit > 0.1: 
                 print(f"✅ arbitrage found ({a}->{b}->{c}->{a}): {percent_profit:.2f}% profit")
